@@ -1,4 +1,4 @@
-// levels.js - Procedurally generates 100 stages for Neon Block
+// levels.js - Procedurally generates 100 stages for Neon Blocks
 
 const LEVELS = [];
 
