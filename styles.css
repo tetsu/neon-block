@@ -1,0 +1,218 @@
+:root {
+    --neon-blue: #00f3ff;
+    --neon-pink: #ff00ea;
+    --neon-green: #39ff14;
+    --neon-yellow: #fffb00;
+    --neon-red: #ff3333;
+    --bg-color: #050508;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Orbitron', sans-serif;
+    user-select: none;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    touch-action: none;
+}
+
+#game-container {
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+    border: 1px solid rgba(0, 243, 255, 0.3);
+}
+
+canvas {
+    display: block;
+    background: radial-gradient(circle at center, #0a0a1a 0%, #000 100%);
+}
+
+#ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#score-display {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 20px;
+    color: var(--neon-blue);
+    text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+    pointer-events: auto;
+}
+
+.screen.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+#start-screen h1 { text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink); }
+#game-over-screen h1 { color: #ff3333; text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; }
+#victory-screen h1 { color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green); }
+
+#stage-screen { background: rgba(0,0,0,0.9); }
+#stage-title {
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+    font-size: 60px;
+    letter-spacing: 5px;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #ddd;
+}
+
+button {
+    background: transparent;
+    border: 2px solid var(--neon-blue);
+    color: var(--neon-blue);
+    padding: 15px 40px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 0 5px var(--neon-blue);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.4), inset 0 0 10px rgba(0, 243, 255, 0.4);
+    transition: all 0.2s;
+    outline: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: rgba(0, 243, 255, 0.2);
+    box-shadow: 0 0 20px var(--neon-blue), inset 0 0 20px var(--neon-blue);
+}
+
+#mobile-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: none; /* Shown dynamically by JS */
+    pointer-events: auto;
+    z-index: 100;
+}
+
+.action-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--neon-red);
+    color: var(--neon-red);
+    font-size: 14px;
+    padding: 0;
+    text-shadow: 0 0 5px var(--neon-red);
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.5), inset 0 0 10px rgba(255, 51, 51, 0.3);
+}
+
+.action-btn:active {
+    background: rgba(255, 51, 51, 0.3);
+}
+
+#ending-screen {
+    background: black;
+    overflow: hidden;
+}
+
+.scroll-container {
+    position: absolute;
+    bottom: -100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scroll-container.animate {
+    animation: scrollCredits 15s linear forwards;
+}
+
+@keyframes scrollCredits {
+    0% {
+        bottom: -100%;
+    }
+    100% {
+        bottom: 20%;
+    }
+}
+
+.ending-title {
+    color: var(--neon-yellow);
+    text-shadow: 0 0 15px var(--neon-yellow), 0 0 30px var(--neon-yellow);
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+
+.ending-thanks {
+    color: var(--neon-green);
+    font-size: 24px;
+    margin-bottom: 50px;
+    text-shadow: 0 0 10px var(--neon-green);
+}
+
+.staff-credits h2 {
+    color: var(--neon-pink);
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px var(--neon-pink);
+}
+
+.staff-credits h3 {
+    color: var(--neon-blue);
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.staff-credits p {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+#ending-restart-btn {
+    margin-top: 50px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+#ending-restart-btn.show {
+    opacity: 1;
+}

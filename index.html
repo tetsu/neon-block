@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Neon Breakout</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="ui-layer">
+            <div id="score-display">Level: 1 | Score: 0 | Lives: 3</div>
+            
+            <div id="start-screen" class="screen show">
+                <h1>NEON BREAKOUT</h1>
+                <p>Use Mouse, Touch, or Arrow Keys | Space/Tap to Shoot</p>
+                <div style="color: #00f3ff; margin-bottom: 20px; font-size: 14px;">Items: &lt; &gt; (Expand) | 1UP (Life) | x3 (Multi) | SLW (Slow) | GUN (Laser)</div>
+                <button id="start-btn">PLAY</button>
+            </div>
+
+            <div id="stage-screen" class="screen">
+                <h1 id="stage-title">STAGE 1</h1>
+            </div>
+            
+            <div id="game-over-screen" class="screen">
+                <h1>GAME OVER</h1>
+                <p>Final Score: <span id="final-score">0</span></p>
+                <button id="restart-btn">RESTART</button>
+            </div>
+            
+            <div id="victory-screen" class="screen">
+                <h1>YOU WIN!</h1>
+                <p>Final Score: <span id="victory-score">0</span></p>
+                <button id="play-again-btn">PLAY AGAIN</button>
+            </div>
+
+            <div id="ending-screen" class="screen">
+                <div class="stars-container"></div>
+                <div class="scroll-container">
+                    <h1 class="ending-title">CONGRATULATIONS!</h1>
+                    <p class="ending-thanks">You beat all 100 stages!</p>
+                    <div class="staff-credits">
+                        <h2>-- STAFF --</h2>
+                        <br>
+                        <h3>DIRECTOR</h3>
+                        <p>USER</p>
+                        <br>
+                        <h3>PROGRAMMING</h3>
+                        <p>Agent Antigravity</p>
+                        <br>
+                        <h3>LEVEL DESIGN</h3>
+                        <p>Procedural AI</p>
+                        <br>
+                        <h3>MUSIC / AUDIO</h3>
+                        <p>Synthesizer Dreams</p>
+                        <br>
+                        <h3>SPECIAL THANKS</h3>
+                        <p>You!</p>
+                        <br><br><br><br>
+                        <p>Thanks for playing NEON BREAKOUT!</p>
+                    </div>
+                    <button id="ending-restart-btn">RETURN TO MENU</button>
+                </div>
+            </div>
+
+            <div id="mobile-controls">
+                <button id="shoot-btn" class="action-btn">SHOOT</button>
+            </div>
+        </div>
+    </div>
+    <script src="audio.js"></script>
+    <script src="levels.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
