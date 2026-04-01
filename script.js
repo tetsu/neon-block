@@ -14,7 +14,12 @@ const gameOverScreen = document.getElementById('game-over-screen');
 const victoryScreen = document.getElementById('victory-screen');
 const finalScoreSpan = document.getElementById('final-score');
 const victoryScoreSpan = document.getElementById('victory-score');
-const mobileControls = document.getElementById('mobile-controls');
+const mobileControls = document.querySelectorAll('.mobile-controls');
+const shootBtns = document.querySelectorAll('.shoot-btn');
+
+function setMobileControlsDisplay(displayVal) {
+    mobileControls.forEach(ctrl => ctrl.style.display = displayVal);
+}
 
 document.getElementById('start-btn').addEventListener('click', () => setGameState(GameState.STAGE_TRANSITION));
 document.getElementById('restart-btn').addEventListener('click', () => { currentLevel = 0; score = 0; lives = 3; setGameState(GameState.STAGE_TRANSITION); });
@@ -83,7 +88,7 @@ const paddle = {
             this.laserTimer--;
             if (this.laserTimer <= 0) {
                 this.hasLaser = false;
-                mobileControls.style.display = 'none';
+                setMobileControlsDisplay('none');
             }
         }
 
@@ -173,7 +178,7 @@ function resetLevelState() {
     paddle.expandTimer = 0;
     paddle.laserTimer = 0;
     paddle.hasLaser = false;
-    mobileControls.style.display = 'none';
+    setMobileControlsDisplay('none');
     paddle.x = GAME_WIDTH / 2 - paddle.width / 2;
     items = [];
     bullets = [];
@@ -288,7 +293,7 @@ function applyItem(type) {
     } else if (type === 'LASER') {
         paddle.hasLaser = true;
         paddle.laserTimer = 600; // 10 seconds
-        mobileControls.style.display = 'block'; // Show shoot button
+        setMobileControlsDisplay('block'); // Show shoot buttons
     }
 }
 
@@ -374,8 +379,10 @@ canvas.addEventListener("mousemove", mouseMoveHandler, false);
 canvas.addEventListener("touchmove", touchMoveHandler, { passive: false });
 canvas.addEventListener("mousedown", handleAction, false);
 canvas.addEventListener("touchstart", handleAction, { passive: false });
-document.getElementById('shoot-btn').addEventListener('touchstart', (e) => { e.preventDefault(); shootBullets(); });
-document.getElementById('shoot-btn').addEventListener('mousedown', (e) => { e.preventDefault(); shootBullets(); });
+shootBtns.forEach(btn => {
+    btn.addEventListener('touchstart', (e) => { e.preventDefault(); shootBullets(); });
+    btn.addEventListener('mousedown', (e) => { e.preventDefault(); shootBullets(); });
+});
 
 function handleAction(e) {
     if (currentState !== GameState.PLAYING) return;
@@ -388,7 +395,7 @@ function handleAction(e) {
         }
     });
     // If no balls were attached, shoot lasers
-    if (!launched && paddle.hasLaser && e.target !== document.getElementById('shoot-btn')) {
+    if (!launched && paddle.hasLaser && !e.target.classList.contains('shoot-btn')) {
         // Just allows tapping the canvas itself to shoot if preferred
         shootBullets();
     }
@@ -483,15 +490,15 @@ function setGameState(state) {
     } else if (state === GameState.GAME_OVER) {
         finalScoreSpan.innerText = score;
         gameOverScreen.classList.add('show');
-        mobileControls.style.display = 'none';
+        setMobileControlsDisplay('none');
         cancelAnimationFrame(animationId);
     } else if (state === GameState.VICTORY) {
         victoryScoreSpan.innerText = score;
         victoryScreen.classList.add('show');
-        mobileControls.style.display = 'none';
+        setMobileControlsDisplay('none');
         cancelAnimationFrame(animationId);
     } else if (state === GameState.ENDING) {
-        mobileControls.style.display = 'none';
+        setMobileControlsDisplay('none');
         endingScreen.classList.add('show');
         
         const scrollContainer = endingScreen.querySelector('.scroll-container');
