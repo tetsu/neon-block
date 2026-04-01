@@ -21,19 +21,33 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     height: 100vh;
+    margin: 0;
     overflow: hidden;
     touch-action: none;
+}
+
+@supports (height: 100dvh) {
+    body {
+        height: 100dvh;
+    }
 }
 
 #game-container {
     position: relative;
     box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
     border: 1px solid rgba(0, 243, 255, 0.3);
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     max-width: calc(100vh * 800 / 600);
     max-height: calc(100vw * 600 / 800);
+}
+
+@supports (height: 100dvh) {
+    #game-container {
+        max-width: calc(100dvh * 800 / 600);
+    }
 }
 
 canvas {
