@@ -1,4 +1,4 @@
-# Neon Breakout Clone
+# Neon Block
 
 A visually striking, fully-featured pure HTML5/JS/CSS Breakout clone. 
 Playable directly in your browser with zero build steps or backend servers required!

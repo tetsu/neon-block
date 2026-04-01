@@ -1,4 +1,4 @@
-// audio.js - Web Audio API Sound Generator for Neon Breakout
+// audio.js - Web Audio API Sound Generator for Neon Block
 
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 let audioCtx = null;
